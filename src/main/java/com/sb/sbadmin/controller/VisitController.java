@@ -60,7 +60,15 @@ public class VisitController {
         return ResponseEntity.ok(visitService.getVisit(pageable));
     }
     @GetMapping("/total")
-    public ResponseEntity<?> getVisit(){
+    public ResponseEntity<?> getVisitTotal(){
         return ResponseEntity.ok(visitService.getTotalVisit());
+    }
+    @GetMapping("/total/today")
+    public ResponseEntity<?> getVisitTotalToday(){
+        return ResponseEntity.ok(visitService.getVisitTotalToday());
+    }
+    @GetMapping("/today/time")
+    public ResponseEntity<?> getVisitTodayTime(){
+        return ResponseEntity.ok(visitService.getVisitTodayTime());
     }
 }

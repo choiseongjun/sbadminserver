@@ -32,4 +32,7 @@ public class Visit {
     private String browser;
     @Column(name="REFERER")
     private String referer;
+
+    @Transient
+    private int countToday;
 }
