@@ -1,6 +1,7 @@
 package com.sb.sbadmin.controller;
 
 import com.sb.sbadmin.domain.Visit;
+import com.sb.sbadmin.dto.VisitReq;
 import com.sb.sbadmin.repository.VisitRepository;
 import com.sb.sbadmin.service.VisitService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,9 +28,10 @@ public class VisitController {
     private VisitService visitService;
 
     @PostMapping
-    public ResponseEntity<?> visitCount(){
-        HttpServletRequest request = // 5
-                ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+    public ResponseEntity<?> visitCount(HttpServletRequest request, @RequestBody VisitReq visitReq){
+//        HttpServletRequest request = // 5
+//                ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        System.out.println("get=="+visitReq.getVisitUrl());
         Visit visit = new Visit();
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
@@ -38,7 +40,7 @@ public class VisitController {
         String initTime = formatter.format ( request.getSession().getCreationTime());//세션초기시간
         String sessionId = request.getSession().getId();
         String browserInfo = request.getHeader("User-Agent");
-        String referer = (String)request.getHeader("REFERER");
+//        String referer = request.getHeader("REFERER");
 
         String accessPath = urlPathHelper.getOriginatingRequestUri(request);
         visit.setIpaddress(request.getRemoteAddr());
@@ -47,7 +49,7 @@ public class VisitController {
         visit.setAccesspath(accessPath);
         visit.setSessionlastaccess(lastTime);
         visit.setOstype(System.getProperty("os.name"));
-        visit.setReferer(referer);
+        visit.setReferer(visitReq.getVisitUrl());
         visitRepository.save(visit);
         return null;
     }
