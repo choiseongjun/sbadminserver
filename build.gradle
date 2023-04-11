@@ -34,6 +34,10 @@ dependencies {
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.31'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+// https://mvnrepository.com/artifact/org.jsoup/jsoup
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.15.4'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.8.3'
+
 
 }
 
