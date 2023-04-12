@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
@@ -27,5 +29,12 @@ public class BoardService {
 
     public Board boardGetDetail(long id) {
         return boardRepository.findById(id).get();
+    }
+
+    public void boardPut(Board board) {
+        Board rtnBoard = boardRepository.findById(board.getId()).get();
+        rtnBoard.setTitle(board.getTitle());
+        rtnBoard.setContent(board.getContent());
+        rtnBoard.setGubun(board.getGubun());
     }
 }

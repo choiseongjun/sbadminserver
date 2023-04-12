@@ -20,6 +20,11 @@ public class BoardController {
         boardService.boardPost(board);
         return ResponseEntity.ok("success");
     }
+    @PutMapping
+    public ResponseEntity<?> boardPut(@RequestBody Board board) {
+        boardService.boardPut(board);
+        return ResponseEntity.ok("success");
+    }
     @GetMapping("/{gubun}")
     public ResponseEntity<?> boardGet(@PathVariable String gubun){
         return ResponseEntity.ok(boardService.boardGet(gubun));
@@ -36,4 +41,6 @@ public class BoardController {
 
         return ResponseEntity.ok(boardService.boardAllGet(pageable));
     }
+
+
 }
