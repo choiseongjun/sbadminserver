@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional
 public class KopsService {
     private WebDriver driver;
     private WebElement element;
@@ -34,7 +36,6 @@ public class KopsService {
 
     public void getIncreasStockInfogen() {
         System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
-        stockInfoRepository.deleteAll();
 
         // 2. WebDriver 옵션 설정
         ChromeOptions options = new ChromeOptions();
@@ -48,6 +49,9 @@ public class KopsService {
         url = "https://www.kokstock.com/main.asp";
         driver.get(url);
 //        WebElement elm = driver.findElement(By.className("News"));
+
+        stockInfoRepository.deleteAll();
+
         List<WebElement> elm = driver.findElements(By.cssSelector(".news1 li"));
 
         List<List> allLi = new ArrayList<>();
@@ -69,7 +73,6 @@ public class KopsService {
 
         List<WebElement> news2 = driver.findElements(By.cssSelector(".news3 li"));
 
-        System.out.println("size=" + news2.size());
         List<BoardInfo> li2 = new ArrayList<>();
 
         for (int i = 0; i < news2.size(); i++) {

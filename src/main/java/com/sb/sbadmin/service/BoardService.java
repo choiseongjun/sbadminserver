@@ -20,7 +20,7 @@ public class BoardService {
     }
 
     public List<Board> boardGet(String gubun) {
-        return boardRepository.findAllByGubun(gubun);
+        return boardRepository.findAllByGubunOrderByIdDesc(gubun);
     }
 
     public Page<Board> boardAllGet(Pageable pageable) {
@@ -36,5 +36,9 @@ public class BoardService {
         rtnBoard.setTitle(board.getTitle());
         rtnBoard.setContent(board.getContent());
         rtnBoard.setGubun(board.getGubun());
+    }
+
+    public List<Board> boardGetTop(String gubun) {
+        return boardRepository.findTop5AllByGubun(gubun);
     }
 }

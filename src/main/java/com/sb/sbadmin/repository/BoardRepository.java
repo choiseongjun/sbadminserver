@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface BoardRepository extends JpaRepository<Board,Long> {
     List<Board> findAllByGubun(String gubun);
+
+    List<Board> findTop5AllByGubun(String gubun);
+
+    List<Board> findAllByGubunOrderByIdDesc(String gubun);
 }

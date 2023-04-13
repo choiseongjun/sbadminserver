@@ -29,6 +29,10 @@ public class BoardController {
     public ResponseEntity<?> boardGet(@PathVariable String gubun){
         return ResponseEntity.ok(boardService.boardGet(gubun));
     }
+    @GetMapping("/{gubun}/latest")
+    public ResponseEntity<?> boardGetLatest(@PathVariable String gubun){
+        return ResponseEntity.ok(boardService.boardGetTop(gubun));
+    }
     @GetMapping("/detail/{id}")
     public ResponseEntity<?> boardGetDetail(@PathVariable long id){
         return ResponseEntity.ok(boardService.boardGetDetail(id));
