@@ -41,4 +41,8 @@ public class BoardService {
     public List<Board> boardGetTop(String gubun) {
         return boardRepository.findTop5AllByGubun(gubun);
     }
+
+    public void boardDelete(long id) {
+        boardRepository.deleteById(id);
+    }
 }

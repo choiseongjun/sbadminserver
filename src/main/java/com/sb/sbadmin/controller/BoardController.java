@@ -37,6 +37,12 @@ public class BoardController {
     public ResponseEntity<?> boardGetDetail(@PathVariable long id){
         return ResponseEntity.ok(boardService.boardGetDetail(id));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> boardDelet(@PathVariable long id){
+        boardService.boardDelete(id);
+        return ResponseEntity.ok("succss");
+
+    }
     @GetMapping
     public ResponseEntity<?> boardAllGet(@RequestParam int pageNum,
                                          @RequestParam int page,
