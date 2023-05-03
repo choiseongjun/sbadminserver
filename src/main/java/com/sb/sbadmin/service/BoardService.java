@@ -39,7 +39,7 @@ public class BoardService {
     }
 
     public List<Board> boardGetTop(String gubun) {
-        return boardRepository.findTop5AllByGubun(gubun);
+        return boardRepository.findAllByGubun(gubun);
     }
 
     public void boardDelete(long id) {
