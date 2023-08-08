@@ -8,8 +8,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://ls-b50b96f7518520ccd303f46226b1b0450dd04f70.csqzq9lkftya.ap-northeast-2.rds.amazonaws.com:3306/sbadmin?serverTimezone=UTC&characterEncoding=UTF-8
-    username: dbmasteruser
-    password: fsmcompany!
+    username: 
+    password: 
 
 
 #    properties:
